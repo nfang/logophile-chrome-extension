@@ -1,0 +1,7 @@
+# Test framework #
+jasmine
+
+# Builds #
+build
+*.bat
+*.jar

@@ -1,0 +1,12 @@
+{
+	"name": "Word Lover",
+	"version": "0.1.5",
+	"description": "A set of utilities for word lovers",
+	"browser_action": {
+		"default_icon": "images/icon_32.png",
+		"popup": "wordlover.html"
+	},
+	"permissions": [
+		"http://api.wordnik.com/"
+	]
+}
