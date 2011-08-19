@@ -1,8 +1,18 @@
 ﻿(function(wlce, $, undefined) {
 	wlce.API_BASE_URL = "http://api.wordnik.com/v4";
 	
-	wlce.API_KEY = "API_KEY";
+	wlce.API_KEY = "9f6ca76279690fb4c800304fdaa05c60993d46931bae1fcd7";
 	
+	m = {
+		a: 1, b: 4, c: 4, d: 2,
+		e: 1, f: 4, g: 3, h: 3,
+		i: 1, j: 10, k: 5, l: 2,
+		m: 4, n: 2, o: 1, p: 4,
+		q: 10, r: 1, s: 1, t: 1,
+		u: 2, v: 5, w: 4, x: 8,
+		y: 3, z: 10
+	};
+	  
 	/**
 	 * Replace one or more format items in a specified pattern with string representation of specified objects
 	 */
@@ -14,6 +24,14 @@
 		}
 		return s;
 	};
+	
+	String.prototype.get_scrabble_score = function(opt) {
+		var s = this, i = s.length, sum = 0;
+		while(i--) {
+			sum += m[s.charAt(i)];
+		}
+		return sum;
+	}
 	
 	/**
 	 * Take a specified number of elements from an array
@@ -58,7 +76,8 @@
 					"audio": a[0].length > 0 ? a[0][0].fileUrl : "",
 					"examples": data.examples.take(2),
 					"definitions": data.definitions,
-					"note": data.note
+					"note": data.note,
+					"score": data.word.split(' ').length > 1 ? "-" : data.word.get_scrabble_score()
 				};
 				callback(entity);
 			});
@@ -67,8 +86,8 @@
 	
 	wlce.get_word_of_the_day = function(date, callback) {
 		var dt = wlce.common.format_date(date);
-		var url = "{0}/words.json/wordOfTheDay?api_key={1}".format(
-			wlce.API_BASE_URL, wlce.API_KEY);
+		var url = "{0}/words.json/wordOfTheDay?api_key={1}&date={2}".format(
+			wlce.API_BASE_URL, wlce.API_KEY, dt);
 		return $.getJSON(url, callback);
 	};
 	

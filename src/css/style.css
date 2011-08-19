@@ -110,13 +110,16 @@ mark {
     font-style: italic;
 }
 
-.sidebar {
-    border:1px dotted #666;
-    background-color: #ebebeb;
+aside {
     float: right;
     margin-right: 5px;
     padding: 5px;
     width: 35%;
+}
+
+.sidebar {
+    border:1px dotted #666;
+    background-color: #ebebeb;
 }
 
 .sidebar .title {
@@ -129,6 +132,35 @@ mark {
 .sidebar article {
     font-family: 'Unna', 'Times New Roman', serif;
     font-size: 14px;
+}
+
+.words-with-friends div {
+    cursor: default;
+    display: inline-block;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.wwf-icon {
+	background: -webkit-gradient(linear, left top, right bottom, from(#faf541), to(#e9ae4a));
+    border-right-style: none;
+    border-radius: 5px 0 0 5px;
+    box-shadow: inset 0 0 3px #dc7003;
+    color: #4a1a04;
+    font-weight: 800;
+    width: 24px;
+    text-align: center;
+}
+
+.wwf-score {
+    border-radius: 0 5px 5px 0;
+    box-shadow: inset 0 0 2px #999;
+    color: #333;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-shadow: 1px 0 0 #666;
 }
 
 .source {
