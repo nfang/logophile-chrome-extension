@@ -1,35 +1,38 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+<script type="text/javascript" src="js/libs/jquery.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/wordnik.js"></script>
+<script type="text/javascript" src="js/cache.js"></script>
 <script type="text/javascript">
-	var cache = cache || {};
-	
-	cache.put = function(k, v) {
-		return localStorage.setItem(k, v);
-	}
-	
-	cache.putJSON = function(k, v) {
-		try {
-			return localStorage.setItem(k, JSON.stringify(v));
-		} catch(e) {}
-		return;
-	};
-	
-	cache.get = function(k) {
-		return localStorage.getItem(k);
-	}
-	
-	cache.getJSON = function(k) {
-		var item = localStorage.getItem(k);
-		try {
-			if(item) return JSON.parse(item);
-		} catch(e) {}
-		return;
-	};
-	
-	cache.flush = function() {
-		localStorage.clear();
+	function assemble(date, callback) {
+		var cached = cache.getJSON("WOTD");
+		if(cached && cached.date === date.format("yyyy-MM-dd")) {
+			return callback(cached);
+		}
+		wordnik.get_word_of_the_day(date).success(function(data) {
+			var w = data.word;
+			$.when(wordnik.get_hyphenation(w), wordnik.get_pronunciation(w), wordnik.get_audio(w)).then(function(h, p, a) {
+				var entity = {
+					"id": data.id,
+					"word": data.word,
+					"date": date.format("yyyy-MM-dd"),
+					"hyphenation": $.map(h[0], function(v, i) { return v.text; }).join('·'),					
+					"pronunciation": p[0].length > 0 ? p[0][0].raw.slice(1, -1) : "",
+					"audio": a[0].length > 0 ? a[0][0].fileUrl : "",
+					"examples": data.examples.take(2),
+					"definitions": data.definitions,
+					"note": data.note,
+					"score": data.word.get_scrabble_score()
+				};
+				cache.putJSON("WOTD", entity);
+				callback(entity);
+			});
+		});
 	};
 </script>
 </head>
+<body>
+</body>
 </html>

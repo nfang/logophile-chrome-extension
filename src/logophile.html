@@ -57,7 +57,7 @@
 	<script type="text/javascript" src="js/libs/jquery.min.js"></script>
 	<script type="text/javascript" src="js/libs/jquery.tmpl.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
-	<script type="text/javascript" src="js/logophile.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
 	<script type="text/javascript">
 		function content_loaded() {
 			$(".loading").fadeOut(500);
@@ -72,7 +72,7 @@
 				google: { families: ['Open Sans', 'Unna', 'Ubuntu'] }
 			});
 			
-			lce.assemble(new Date(), function(w) {
+			logophile.assemble(new Date(), function(w) {
 				empty_content();
 				
 				$("#word-tmpl").tmpl(w).appendTo("#main-word");
