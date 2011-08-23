@@ -8,12 +8,15 @@ to import relevant scripts:
 
 ```html
 <!-- include dependencies here... -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
-
+<script type="text/javascript" src="../src/js/libs/jquery.min.js"></script>
+  
 <!-- include source files here... -->
-<script type="text/javascript" src="../src/js/logophile.js"></script>
+<script type="text/javascript" src="../src/js/common.js"></script>
+<script type="text/javascript" src="../src/js/wordnik.js"></script>
+<script type="text/javascript" src="../src/js/cache.js"></script>
 
 <!-- include spec files here... -->
-<script type="text/javascript" src="../spec/lce-common-suite.js"></script>
-<script type="text/javascript" src="../spec/lce-suite.js"></script>
+<script type="text/javascript" src="../spec/common-suite.js"></script>
+<script type="text/javascript" src="../spec/wordnik-suite.js"></script>
+<script type="text/javascript" src="../spec/cache-suite.js"></script>
 ```
