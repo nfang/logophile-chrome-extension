@@ -168,7 +168,11 @@ aside {
     display: block;
     font-family: 'Unna', 'Times New Roman', serif;
     font-size: 14px;
+	overflow: hidden;
+	text-overflow: ellipsis;
     text-shadow: 1px 1px 0 #fff;
+	white-space: nowrap;
+	width: 100%;
 }
 
 .source:before {
