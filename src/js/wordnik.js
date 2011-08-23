@@ -17,13 +17,19 @@
 	
 	wordnik.get_pronunciation = function(word, callback) {
 		var url = "{0}/word.json/{1}/pronunciations?typeFormat=ahd&api_key={2}".format(
-			wordnik.API_BASE_URL, encodeURIComponent(word), wordnik.API_KEY)
+			wordnik.API_BASE_URL, encodeURIComponent(word), wordnik.API_KEY);
 		return $.getJSON(url, callback);
 	};
 	
 	wordnik.get_audio = function(word, callback) {
 		var url = "{0}/word.json/{1}/audio?api_key={2}".format(
 			wordnik.API_BASE_URL, encodeURIComponent(word), wordnik.API_KEY);
+		return $.getJSON(url, callback);
+	};
+	
+	wordnik.get_related = function(word, type, callback) {
+		var url = "{0}/word.json/{1}/related?type={2}&api_key={3}".format(
+			wordnik.API_BASE_URL, encodeURIComponent(word), type, wordnik.API_KEY);
 		return $.getJSON(url, callback);
 	};
 }(window.wordnik = window.wordnik || {}));
