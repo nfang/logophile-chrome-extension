@@ -6,6 +6,26 @@
 <script type="text/javascript" src="js/wordnik.js"></script>
 <script type="text/javascript" src="js/cache.js"></script>
 <script type="text/javascript">
+	function action_listeners(request, sender, sendResponse) {
+		var act = request.action;
+		console.log(act);
+		switch(act) {
+			case "g_syn":
+				get_synonym(request.args['word'], function(syn) {
+					sendResponse({status:'success', data: syn});
+				});
+			break;
+			case "g_ant":
+				get_antonym(request.args['word'], function(ant) {
+					sendResponse({status: 'success', data: ant});
+				});
+			break;
+			default: 
+				sendResponse({status: 'error', message: 'Requested action not found'});
+			break;
+		}
+	}
+	
 	function assemble(date, callback) {
 		var cached = cache.getJSON("WOTD");
 		if(cached && cached.date === date.format("yyyy-MM-dd")) {
@@ -31,6 +51,21 @@
 			});
 		});
 	};
+	
+	function get_synonym(word, callback) {
+		wordnik.get_related(word, 'synonym', function(data) {
+			callback((data && data.length > 0) ? data[0].words : []);
+		});
+	};
+
+	function get_antonym(word, callback) {
+		wordnik.get_related(word, 'antonym', function(data) {
+			callback((data && data.length > 0) ? data[0].words : []);
+		});
+	};
+	
+	chrome.extension.onRequest.addListener(action_listeners);
+	
 </script>
 </head>
 <body>

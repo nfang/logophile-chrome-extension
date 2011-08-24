@@ -28,7 +28,7 @@
 	};
 	
 	wordnik.get_related = function(word, type, callback) {
-		var url = "{0}/word.json/{1}/related?type={2}&api_key={3}".format(
+		var url = "{0}/word.json/{1}/related?type={2}&useCanonical=true&api_key={3}".format(
 			wordnik.API_BASE_URL, encodeURIComponent(word), type, wordnik.API_KEY);
 		return $.getJSON(url, callback);
 	};

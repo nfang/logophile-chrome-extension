@@ -146,6 +146,14 @@ String.prototype.get_scrabble_score = function(typ) {
 }
 
 /**
+ * Trim whitespaces at the beginning and end of a string
+ */
+String.prototype.trim = function() {
+	var s = this, re = /^\s*|\s*$/g;
+	return s.replace(re, "");
+}
+
+/**
  * Prepend zeros to a string until its length reaches a specified number
  */
 function pad(v, L) {

@@ -6,7 +6,7 @@
 	"content_scripts": [
 		{
 			"matches": ["http://*/*", "https://*/*"],
-			"js": ["js/libs/jquery.min.js", "js/wordnik.js", "js/content_script.js"]
+			"js": ["js/libs/jquery.min.js", "js/content_script.js"]
 		}
 	],
 	"browser_action": {
