@@ -38,6 +38,7 @@
 					"id": data.id,
 					"word": data.word,
 					"date": date.format("yyyy-MM-dd"),
+					"url": "{0}/{1}".format(wordnik.WORD_OF_THE_DAY_WEB_URL, date.format("yyyy/MM/dd")),
 					"hyphenation": $.map(h[0], function(v, i) { return v.text; }).join('·'),					
 					"pronunciation": p[0].length > 0 ? p[0][0].raw.slice(1, -1) : "",
 					"audio": a[0].length > 0 ? a[0][0].fileUrl : "",

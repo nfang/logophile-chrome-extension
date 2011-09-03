@@ -1,6 +1,7 @@
 ﻿(function(wordnik, undefined) {
 	wordnik.API_BASE_URL = "http://api.wordnik.com/v4";
 	wordnik.API_KEY = "9f6ca76279690fb4c800304fdaa05c60993d46931bae1fcd7";
+	wordnik.WORD_OF_THE_DAY_WEB_URL = "http://www.wordnik.com/word-of-the-day";
 	
 	wordnik.get_word_of_the_day = function(date, callback) {
 		var dt = date.format("yyyy-MM-dd");

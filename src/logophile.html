@@ -6,6 +6,7 @@
 </head>
 <body>
 	<div class="loading"></div>
+	<div id="fb-root"></div>
 	<div class="wrap">
 		<header id="main-word"></header>
 		<div class="left">
@@ -23,24 +24,48 @@
 			<div class="title">Note</div>
 			<article id="notes"></article>
 		</aside>
+		<aside class="social">
+			<div id="twitter-button"></div>
+			<div id="facebook-button">
+				
+			</div>
+		</aside>
 		<footer class="clear">
 			Powered By <a href="http://wordnik.com" target="_blank"><img src="images/wordnik.png" alt="Wordnik" /></a>
 		</footer>
 	</div>
 	
 	<!-- Templates -->
+	
+	<!-- Twitter button -->
+	<script id="twitter-button-tmpl" type="text/x-jquery-tmpl">	
+		<a href="http://twitter.com/share" class="twitter-share-button" 
+			 data-url="${url}" data-count="none" data-text="Word of the Day via Logophile: ${word}">Tweet</a>
+	</script>
+	
+	<!-- Facebook button -->
+	<script id="facebook-button-tmpl" type="text/x-jquery-tmpl">
+		<iframe src="http://www.facebook.com/plugins/like.php?app_id=198214053577734&amp;href={$url}&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" 
+						scrolling="no" 
+						frameborder="0" 
+						style="border:none; overflow:hidden; width:100px; height:21px;" 
+						allowTransparency="true"></iframe>
+	</script>
+	
 	<script id="definition-tmpl" type="text/x-jquery-tmpl">
 		<li>
 			<span class="part-of-speech">${partOfSpeech}</span>
 			<span class="text">${$item.get_raw()}</span>
 		</li>
 	</script>
+	
 	<script id="example-tmpl" type="text/x-jquery-tmpl">
 		<li>
 			<span class="text">{{html $item.marked()}}</span>
 			<a class="source" href="${url}" target="_blank" title="${title}">${title}</a>
 		</li>
 	</script>
+	
 	<script id="word-tmpl" type="text/x-jquery-tmpl">
 		<span class="word">
 		{{if hyphenation.length}} ${hyphenation} {{else}} ${word} {{/if}}
@@ -65,6 +90,10 @@
 		
 		function empty_content() {
 			$("#main-word,#examples,#definitions").empty();
+		};
+		
+		function create_social_buttons(share_url) {
+			$('').appendTo('#twitter-button');
 		};
 		
 		$(function() {
@@ -92,6 +121,14 @@
 					}
 				}).appendTo("#definitions");
 				$("#notes").text(w.note);
+				
+				<!-- Twitter button -->
+				$("#twitter-button-tmpl").tmpl(w).appendTo("#twitter-button");
+				$.getScript('http://platform.twitter.com/widgets.js');
+			
+				<!-- Facebook button -->
+				$("#facebook-button-tmpl").tmpl(w).appendTo("#facebook-button");
+				
 				content_loaded();
 			});
 		});
