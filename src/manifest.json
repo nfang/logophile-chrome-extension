@@ -1,6 +1,6 @@
 {
 	"name": "The Logophile",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "A set of utilities for logophiles",
 	"background_page": "background.html",
 	"content_scripts": [

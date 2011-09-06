@@ -40,12 +40,12 @@
 	<!-- Twitter button -->
 	<script id="twitter-button-tmpl" type="text/x-jquery-tmpl">	
 		<a href="http://twitter.com/share" class="twitter-share-button" 
-			 data-url="${url}" data-count="none" data-text="Word of the Day via Logophile: ${word}">Tweet</a>
+			 data-url="${url}" data-count="horizontal" data-text="Word of the Day via Logophile: ${word}">Tweet</a>
 	</script>
 	
 	<!-- Facebook button -->
 	<script id="facebook-button-tmpl" type="text/x-jquery-tmpl">
-		<iframe src="http://www.facebook.com/plugins/like.php?app_id=198214053577734&amp;href={$url}&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" 
+		<iframe src="http://www.facebook.com/plugins/like.php?app_id=198214053577734&amp;href=${url}&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" 
 						scrolling="no" 
 						frameborder="0" 
 						style="border:none; overflow:hidden; width:100px; height:21px;" 
@@ -127,7 +127,7 @@
 				$.getScript('http://platform.twitter.com/widgets.js');
 			
 				<!-- Facebook button -->
-				$("#facebook-button-tmpl").tmpl(w).appendTo("#facebook-button");
+				// $("#facebook-button-tmpl").tmpl(w).appendTo("#facebook-button");
 				
 				content_loaded();
 			});
