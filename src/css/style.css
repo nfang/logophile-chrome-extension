@@ -139,8 +139,9 @@ aside {
 	padding-top: 5px;
 }
 
+/* Twitter button */
 .social div:nth-child(1) {
-	width: 60px;
+	width: 110px;
 }
 
 .scrabble div {

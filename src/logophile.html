@@ -26,9 +26,8 @@
 		</aside>
 		<aside class="social">
 			<div id="twitter-button"></div>
-			<div id="facebook-button">
-				
-			</div>
+			<div id="google-button"></div>
+			<div id="facebook-button"></div>
 		</aside>
 		<footer class="clear">
 			Powered By <a href="http://wordnik.com" target="_blank"><img src="images/wordnik.png" alt="Wordnik" /></a>
@@ -36,6 +35,11 @@
 	</div>
 	
 	<!-- Templates -->
+	
+	<!-- Google +1 button -->
+	<script id="google-button-tmpl" type="text/x-jquery-tmpl">
+		<div class="g-plusone" data-size="medium" data-annotation="none" data-href="${url}"></div>
+	</script>
 	
 	<!-- Twitter button -->
 	<script id="twitter-button-tmpl" type="text/x-jquery-tmpl">	
@@ -95,7 +99,7 @@
 		function create_social_buttons(share_url) {
 			$('').appendTo('#twitter-button');
 		};
-		
+				
 		$(function() {
 			WebFont.load({
 				google: { families: ['Open Sans', 'Unna', 'Ubuntu'] }
@@ -126,6 +130,14 @@
 				$("#twitter-button-tmpl").tmpl(w).appendTo("#twitter-button");
 				$.getScript('http://platform.twitter.com/widgets.js');
 			
+				$("#google-button-tmpl").tmpl(w).appendTo("#google-button");
+				<!-- Google +1 button -->
+				(function() {
+					var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+					po.src = 'https://apis.google.com/js/plusone.js';
+					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+				})();
+				
 				<!-- Facebook button -->
 				// $("#facebook-button-tmpl").tmpl(w).appendTo("#facebook-button");
 				
