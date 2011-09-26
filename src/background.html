@@ -6,97 +6,96 @@
 <script type="text/javascript" src="js/wordnik.js"></script>
 <script type="text/javascript" src="js/cache.js"></script>
 <script type="text/javascript">
-	function action_listeners(request, sender, sendResponse) {
-		var act = request.action;
-		console.log(act);
-		switch(act) {
-			case "g_syn":
-				get_synonym(request.args['word'], function(syn) {
-					sendResponse({status:'success', data: syn});
-				});
-			break;
-			case "g_ant":
-				get_antonym(request.args['word'], function(ant) {
-					sendResponse({status: 'success', data: ant});
-				});
-			break;
-			case "g_def":
-				get_definitions(request.args['word'], function(def) {
-					sendResponse({status: 'success', data: def});
-				});
-			break;
-			default: 
-				sendResponse({status: 'error', message: 'Requested action not found'});
-			break;
-		}
-	}
-	
-	function assemble(date, callback) {
-		var cached = cache.getJSON("WOTD");
-		if(cached && cached.date === date.format("yyyy-MM-dd")) {
-			return callback(cached);
-		}
-		wordnik.get_word_of_the_day(date).success(function(data) {
-			var w = data.word;
-			$.when(wordnik.get_hyphenation(w), wordnik.get_pronunciation(w), wordnik.get_audio(w)).then(function(h, p, a) {
-				var entity = {
-					"id": data.id,
-					"word": data.word,
-					"date": date.format("yyyy-MM-dd"),
-					"url": "{0}/{1}".format(wordnik.WORD_OF_THE_DAY_WEB_URL, date.format("yyyy/MM/dd")),
-					"hyphenation": $.map(h[0], function(v, i) { return v.text; }).join('·'),					
-					"pronunciation": p[0].length > 0 ? p[0][0].raw.slice(1, -1) : "",
-					"audio": a[0].length > 0 ? a[0][0].fileUrl : "",
-					"examples": data.examples.take(2),
-					"definitions": data.definitions,
-					"note": data.note,
-					"score": data.word.get_scrabble_score()
-				};
-				cache.putJSON("WOTD", entity);
-				callback(entity);
-			});
-		});
-	};
-	
-	function get_synonym(word, callback) {
-		wordnik.get_related(word, 'synonym', function(data) {
-			callback((data && data.length > 0) ? data[0].words : []);
-		});
-	};
+  function action_listeners(request, sender, sendResponse) {
+    var act = request.action;
+    switch(act) {
+      case "g_syn":
+        get_synonym(request.args['word'], function(syn) {
+          sendResponse({status:'success', data: syn});
+        });
+      break;
+      case "g_ant":
+        get_antonym(request.args['word'], function(ant) {
+          sendResponse({status: 'success', data: ant});
+        });
+      break;
+      case "g_def":
+        get_definitions(request.args['word'], function(def) {
+          sendResponse({status: 'success', data: def});
+        });
+      break;
+      default: 
+        sendResponse({status: 'error', message: 'Requested action not found'});
+      break;
+    }
+  }
+  
+  function assemble(date, callback) {
+    var cached = cache.getJSON("WOTD");
+    if(cached && cached.date === date.format("yyyy-MM-dd")) {
+      return callback(cached);
+    }
+    wordnik.get_word_of_the_day(date).success(function(data) {
+      var w = data.word;
+      $.when(wordnik.get_hyphenation(w), wordnik.get_pronunciation(w), wordnik.get_audio(w)).then(function(h, p, a) {
+        var entity = {
+          "id": data.id,
+          "word": data.word,
+          "date": date.format("yyyy-MM-dd"),
+          "url": "{0}/{1}".format(wordnik.WORD_OF_THE_DAY_WEB_URL, date.format("yyyy/MM/dd")),
+          "hyphenation": $.map(h[0], function(v, i) { return v.text; }).join('·'),					
+          "pronunciation": p[0].length > 0 ? p[0][0].raw.slice(1, -1) : "",
+          "audio": a[0].length > 0 ? a[0][0].fileUrl : "",
+          "examples": data.examples.take(2),
+          "definitions": data.definitions,
+          "note": data.note,
+          "score": data.word.get_scrabble_score()
+        };
+        cache.putJSON("WOTD", entity);
+        callback(entity);
+      });
+    });
+  };
+  
+  function get_synonym(word, callback) {
+    wordnik.get_related(word, 'synonym', function(data) {
+      callback((data && data.length > 0) ? data[0].words : []);
+    });
+  };
 
-	function get_antonym(word, callback) {
-		wordnik.get_related(word, 'antonym', function(data) {
-			callback((data && data.length > 0) ? data[0].words : []);
-		});
-	};
-	
-	function get_definitions(word, callback) {
-		wordnik.get_definitions(word, function(data) {
-			if(!data || data.length === 0) {
-				callback({ 
-					"word": data[0].word,
-					"count": 0
-				});
-			} else {
-				var def = { 
-					"word": data[0].word,
-					"count": data.length,
-					"definitions": []
-				};
-				for(var i = data.length; --i >= 0;) {
-					def.definitions.push({
-						"partOfSpeach": data[i].partOfSpeech,
-						"text": data[i].text
-					});
-				}
-				def.definitions = def.definitions.reverse();
-				callback(def);
-			}
-		});
-	};
+  function get_antonym(word, callback) {
+    wordnik.get_related(word, 'antonym', function(data) {
+      callback((data && data.length > 0) ? data[0].words : []);
+    });
+  };
+  
+  function get_definitions(word, callback) {
+    wordnik.get_definitions(word, function(data) {
+      if(!data || data.length === 0) {
+        callback({ 
+          "word": data[0].word,
+          "count": 0
+        });
+      } else {
+        var def = { 
+          "word": data[0].word,
+          "count": data.length,
+          "definitions": []
+        };
+        for(var i = data.length; --i >= 0;) {
+          def.definitions.push({
+            "partOfSpeach": data[i].partOfSpeech,
+            "text": data[i].text
+          });
+        }
+        def.definitions = def.definitions.reverse();
+        callback(def);
+      }
+    });
+  };
 
-	chrome.extension.onRequest.addListener(action_listeners);
-	
+  chrome.extension.onRequest.addListener(action_listeners);
+  
 </script>
 </head>
 <body>

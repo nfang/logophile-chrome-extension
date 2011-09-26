@@ -1,25 +1,25 @@
 {
-	"name": "The Logophile",
-	"version": "0.3.0",
-	"description": "A set of utilities for logophiles",
-	"background_page": "background.html",
-	"content_scripts": [
-		{
-			"matches": ["http://*/*", "https://*/*"],
-			"js": ["js/libs/jquery.min.js", "js/content_script.js"]
-		}
-	],
-	"browser_action": {
-		"default_icon": "images/icon_32.png",
-		"popup": "logophile.html"
-	},
-	"minimum_chrome_version": "4.0",
-	"permissions": [
-		"http://api.wordnik.com/"
-	],
-	"icons": {
-		"16": "images/icon_16.png",
-		"48": "images/icon_48.png",
-		"128": "images/icon_128.png"
-	}
+  "name": "The Logophile",
+  "version": "0.3.0",
+  "description": "A set of utilities for logophiles",
+  "background_page": "background.html",
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["js/libs/jquery.min.js", "js/content_script.js"]
+    }
+  ],
+  "browser_action": {
+    "default_icon": "images/icon_32.png",
+    "popup": "logophile.html"
+  },
+  "minimum_chrome_version": "4.0",
+  "permissions": [
+    "http://api.wordnik.com/"
+  ],
+  "icons": {
+    "16": "images/icon_16.png",
+    "48": "images/icon_48.png",
+    "128": "images/icon_128.png"
+  }
 }

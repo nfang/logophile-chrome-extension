@@ -1,149 +1,149 @@
 ﻿<!DOCTYPE html>
 <html lang="en" xml:lang="en">
 <head>
-	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<div class="loading"></div>
-	<div id="fb-root"></div>
-	<div class="wrap">
-		<header id="main-word"></header>
-		<div class="left">
-			<section class="definition">
-				<div class="section-title">Definitions</div>
-				<ol id="definitions"></ol>
-			</section>
-			<section class="example">
-				<div class="section-title">Examples</div>
-				<ul id="examples"></ul>
-				<a class="more" href="http://www.wordnik.com/word-of-the-day" target="_blank" title="View more examples on Wordnik">more...</a>
-			</section>
-		</div>
-		<aside class="sidebar">
-			<div class="title">Note</div>
-			<article id="notes"></article>
-		</aside>
-		<aside class="social">
-			<div id="twitter-button"></div>
-			<div id="google-button"></div>
-			<div id="facebook-button"></div>
-		</aside>
-		<footer class="clear">
-			Powered By <a href="http://wordnik.com" target="_blank"><img src="images/wordnik.png" alt="Wordnik" /></a>
-		</footer>
-	</div>
-	
-	<!-- Templates -->
-	
-	<!-- Google +1 button -->
-	<script id="google-button-tmpl" type="text/x-jquery-tmpl">
-		<div class="g-plusone" data-size="medium" data-annotation="none" data-href="${url}"></div>
-	</script>
-	
-	<!-- Twitter button -->
-	<script id="twitter-button-tmpl" type="text/x-jquery-tmpl">	
-		<a href="http://twitter.com/share" class="twitter-share-button" 
-			 data-url="${url}" data-count="horizontal" data-text="Word of the Day via Logophile: ${word}">Tweet</a>
-	</script>
-	
-	<!-- Facebook button -->
-	<script id="facebook-button-tmpl" type="text/x-jquery-tmpl">
-		<iframe src="http://www.facebook.com/plugins/like.php?app_id=198214053577734&amp;href=${url}&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" 
-						scrolling="no" 
-						frameborder="0" 
-						style="border:none; overflow:hidden; width:100px; height:21px;" 
-						allowTransparency="true"></iframe>
-	</script>
-	
-	<script id="definition-tmpl" type="text/x-jquery-tmpl">
-		<li>
-			<span class="part-of-speech">${partOfSpeech}</span>
-			<span class="text">${$item.get_raw()}</span>
-		</li>
-	</script>
-	
-	<script id="example-tmpl" type="text/x-jquery-tmpl">
-		<li>
-			<span class="text">{{html $item.marked()}}</span>
-			<a class="source" href="${url}" target="_blank" title="${title}">${title}</a>
-		</li>
-	</script>
-	
-	<script id="word-tmpl" type="text/x-jquery-tmpl">
-		<span class="word">
-		{{if hyphenation.length}} ${hyphenation} {{else}} ${word} {{/if}}
-		</span>
-		{{if pronunciation.length}}
-		<span class="pronunciation">[${pronunciation}]</span>
-		{{/if}}
-		<aside class="scrabble" title="Words with Friends score">
+  <div class="loading"></div>
+  <div id="fb-root"></div>
+  <div class="wrap">
+    <header id="main-word"></header>
+    <div class="left">
+      <section class="definition">
+        <div class="section-title">Definitions</div>
+        <ol id="definitions"></ol>
+      </section>
+      <section class="example">
+        <div class="section-title">Examples</div>
+        <ul id="examples"></ul>
+        <a class="more" href="http://www.wordnik.com/word-of-the-day" target="_blank" title="View more examples on Wordnik">more...</a>
+      </section>
+    </div>
+    <aside class="sidebar">
+      <div class="title">Note</div>
+      <article id="notes"></article>
+    </aside>
+    <aside class="social">
+      <div id="twitter-button"></div>
+      <div id="google-button"></div>
+      <div id="facebook-button"></div>
+    </aside>
+    <footer class="clear">
+      Powered By <a href="http://wordnik.com" target="_blank"><img src="images/wordnik.png" alt="Wordnik" /></a>
+    </footer>
+  </div>
+  
+  <!-- Templates -->
+  
+  <!-- Google +1 button -->
+  <script id="google-button-tmpl" type="text/x-jquery-tmpl">
+    <div class="g-plusone" data-size="medium" data-annotation="none" data-href="${url}"></div>
+  </script>
+  
+  <!-- Twitter button -->
+  <script id="twitter-button-tmpl" type="text/x-jquery-tmpl">	
+    <a href="http://twitter.com/share" class="twitter-share-button" 
+       data-url="${url}" data-count="horizontal" data-text="Word of the Day via Logophile: ${word}">Tweet</a>
+  </script>
+  
+  <!-- Facebook button -->
+  <script id="facebook-button-tmpl" type="text/x-jquery-tmpl">
+    <iframe src="http://www.facebook.com/plugins/like.php?app_id=198214053577734&amp;href=${url}&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" 
+            scrolling="no" 
+            frameborder="0" 
+            style="border:none; overflow:hidden; width:100px; height:21px;" 
+            allowTransparency="true"></iframe>
+  </script>
+  
+  <script id="definition-tmpl" type="text/x-jquery-tmpl">
+    <li>
+      <span class="part-of-speech">${partOfSpeech}</span>
+      <span class="text">${$item.get_raw()}</span>
+    </li>
+  </script>
+  
+  <script id="example-tmpl" type="text/x-jquery-tmpl">
+    <li>
+      <span class="text">{{html $item.marked()}}</span>
+      <a class="source" href="${url}" target="_blank" title="${title}">${title}</a>
+    </li>
+  </script>
+  
+  <script id="word-tmpl" type="text/x-jquery-tmpl">
+    <span class="word">
+    {{if hyphenation.length}} ${hyphenation} {{else}} ${word} {{/if}}
+    </span>
+    {{if pronunciation.length}}
+    <span class="pronunciation">[${pronunciation}]</span>
+    {{/if}}
+    <aside class="scrabble" title="Words with Friends score">
             <div class="icon">W</div><div class="score">{{if score}} ${score} {{else}} - {{/if}}</div>
         </aside>
-	</script>
-	<!-- End of Templates -->
-	
-	<script type="text/javascript" src="js/libs/jquery.min.js"></script>
-	<script type="text/javascript" src="js/libs/jquery.tmpl.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
-	<script type="text/javascript" src="js/common.js"></script>
-	<script type="text/javascript">
-		function content_loaded() {
-			$(".loading").fadeOut(500);
-		};
-		
-		function empty_content() {
-			$("#main-word,#examples,#definitions").empty();
-		};
-		
-		function create_social_buttons(share_url) {
-			$('').appendTo('#twitter-button');
-		};
-				
-		$(function() {
-			WebFont.load({
-				google: { families: ['Open Sans', 'Unna', 'Ubuntu'] }
-			});
-			
-			logophile.assemble(new Date(), function(w) {
-				empty_content();
-				
-				$("#word-tmpl").tmpl(w).appendTo("#main-word");
-				
-				$("#example-tmpl").tmpl(w.examples, {
-					marked: function() {
-						var wd = w.word, re = new RegExp(wd, "gi");
-						return this.data.text.replace(re, "<mark>" + wd + "</mark>");
-					}
-				}).appendTo("#examples");
-				
-				$("#definition-tmpl").tmpl(w.definitions, {
-					get_raw: function() {
-						var re = /^\(\w+\)\s*/gi;
-						re.exec(this.data.text);
-						return this.data.text.substring(re.lastIndex);						
-					}
-				}).appendTo("#definitions");
-				$("#notes").text(w.note);
-				
-				<!-- Twitter button -->
-				$("#twitter-button-tmpl").tmpl(w).appendTo("#twitter-button");
-				$.getScript('http://platform.twitter.com/widgets.js');
-			
-				$("#google-button-tmpl").tmpl(w).appendTo("#google-button");
-				<!-- Google +1 button -->
-				(function() {
-					var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-					po.src = 'https://apis.google.com/js/plusone.js';
-					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-				})();
-				
-				<!-- Facebook button -->
-				// $("#facebook-button-tmpl").tmpl(w).appendTo("#facebook-button");
-				
-				content_loaded();
-			});
-		});
-	</script>
+  </script>
+  <!-- End of Templates -->
+  
+  <script type="text/javascript" src="js/libs/jquery.min.js"></script>
+  <script type="text/javascript" src="js/libs/jquery.tmpl.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+  <script type="text/javascript" src="js/common.js"></script>
+  <script type="text/javascript">
+    function content_loaded() {
+      $(".loading").fadeOut(500);
+    };
+    
+    function empty_content() {
+      $("#main-word,#examples,#definitions").empty();
+    };
+    
+    function create_social_buttons(share_url) {
+      $('').appendTo('#twitter-button');
+    };
+        
+    $(function() {
+      WebFont.load({
+        google: { families: ['Open Sans', 'Unna', 'Ubuntu'] }
+      });
+      
+      logophile.assemble(new Date(), function(w) {
+        empty_content();
+        
+        $("#word-tmpl").tmpl(w).appendTo("#main-word");
+        
+        $("#example-tmpl").tmpl(w.examples, {
+          marked: function() {
+            var wd = w.word, re = new RegExp(wd, "gi");
+            return this.data.text.replace(re, "<mark>" + wd + "</mark>");
+          }
+        }).appendTo("#examples");
+        
+        $("#definition-tmpl").tmpl(w.definitions, {
+          get_raw: function() {
+            var re = /^\(\w+\)\s*/gi;
+            re.exec(this.data.text);
+            return this.data.text.substring(re.lastIndex);						
+          }
+        }).appendTo("#definitions");
+        $("#notes").text(w.note);
+        
+        <!-- Twitter button -->
+        $("#twitter-button-tmpl").tmpl(w).appendTo("#twitter-button");
+        $.getScript('http://platform.twitter.com/widgets.js');
+      
+        $("#google-button-tmpl").tmpl(w).appendTo("#google-button");
+        <!-- Google +1 button -->
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+        
+        <!-- Facebook button -->
+        // $("#facebook-button-tmpl").tmpl(w).appendTo("#facebook-button");
+        
+        content_loaded();
+      });
+    });
+  </script>
 </body>
 </html>
