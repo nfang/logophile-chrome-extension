@@ -1,3 +1,36 @@
-.logophile {
-  -webkit-border-radius: 5px;
+.def-pad {
+    border: 2px solid #a67100;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #ccc;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f9d42b), to(#fac924));
+    color: #483b29;
+    display: none;
+    font: 12px/16px verdana, arial, sans-serif;
+    min-height: 120px;
+    padding: 4px 10px 8px 10px;
+    width: 320px;
+}
+
+.def-pad ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+
+.def-pad li {
+    margin: 0 0 8px 0;
+}
+
+.def-word {
+    color: #4c2c36;
+    display: block;
+    font: bold 14px/32px verdana, arial, sans-serif;
+    padding-left: 5px;
+}
+
+.def-word:first-letter {
+    text-transform: uppercase;
+}
+
+.def-pos {
+    font: italic 14px/16px "Times New Roman", serif;
 }

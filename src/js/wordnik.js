@@ -35,7 +35,7 @@
   };
 
   wordnik.get_definitions = function(word, callback) {
-    var url = "{0}/word.json/{1}/definitions?api_key={2}".format(
+    var url = "{0}/word.json/{1}/definitions?useCanonical=true&api_key={2}".format(
       wordnik.API_BASE_URL, encodeURIComponent(word), wordnik.API_KEY);
     return $.getJSON(url, callback);
   };

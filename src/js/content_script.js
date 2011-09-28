@@ -32,12 +32,12 @@ $('body').mousedown(function(e) {
          .bind('click', clickHandler);
   
   timer = setTimeout(function() {
-    var selected = window.getSelection().toString().trim();
+    var selected = window.getSelection().toString().trim().toLowerCase();
     if(!(/\s+/.test(selected))) {
       var payload = { 'action': 'g_def', 'args': {'word': selected} };
       chrome.extension.sendRequest(payload, function(response) {
         console.log(response);
       });
     }
-  }, 750)
+  }, 500);
 });

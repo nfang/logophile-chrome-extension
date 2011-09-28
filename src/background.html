@@ -24,6 +24,9 @@
           sendResponse({status: 'success', data: def});
         });
       break;
+			case "r_def":
+				sendResponse({status: 'success', data: $("#tmpl_def")});
+			break;
       default: 
         sendResponse({status: 'error', message: 'Requested action not found'});
       break;
@@ -84,7 +87,7 @@
         };
         for(var i = data.length; --i >= 0;) {
           def.definitions.push({
-            "partOfSpeach": data[i].partOfSpeech,
+            "partOfSpeech": data[i].partOfSpeech,
             "text": data[i].text
           });
         }
@@ -96,6 +99,17 @@
 
   chrome.extension.onRequest.addListener(action_listeners);
   
+</script>
+<script id="tmpl_def" type="text/x-jquery-tmpl">
+	<span class="def-word">${word}</span>
+	<ol>
+		{{each definitions}}
+		<li>
+			<span class="def-pos">${partOfSpeech}</span>
+			<span>${text}</span>
+		</li>
+		{{/each}}
+	</ol>
 </script>
 </head>
 <body>
