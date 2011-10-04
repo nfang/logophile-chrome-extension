@@ -17,7 +17,7 @@
       <section class="example">
         <div class="section-title">Examples</div>
         <ul id="examples"></ul>
-        <a class="more" href="http://www.wordnik.com/word-of-the-day" target="_blank" title="View more examples on Wordnik">more...</a>
+        <a id="more" class="more" href="" target="_blank" title="View more examples on Wordnik">more...</a>
       </section>
     </div>
     <aside class="sidebar">
@@ -30,7 +30,7 @@
       <div id="facebook-button"></div>
     </aside>
     <footer class="clear">
-      Powered By <a href="http://wordnik.com" target="_blank"><img src="images/wordnik.png" alt="Wordnik" /></a>
+      <a href="http://wordnik.com" target="_blank"><img src="images/powered_by_wordnik.png" alt="Powered by Wordnik" /></a>
     </footer>
   </div>
   
@@ -125,6 +125,7 @@
           }
         }).appendTo("#definitions");
         $("#notes").text(w.note);
+        $("#more").prop("href", "http://www.wordnik.com/word/{0}".format(w.word));
         
         <!-- Twitter button -->
         $("#twitter-button-tmpl").tmpl(w).appendTo("#twitter-button");
