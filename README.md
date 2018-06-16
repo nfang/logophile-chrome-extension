@@ -2,8 +2,8 @@
 This extension provides a set of useful tools for logophiles.
 
 # Specs
-This project uses [Jasmine](http://pivotal.github.com/jasmine/) as testing framework. To run the specs, simply 
-[download](http://pivotal.github.com/jasmine/download.html) the standalone Jasmine runner, and edit SpecRunner.html 
+This project uses [Jasmine](https://jasmine.github.io/) as testing framework. To run the specs, simply 
+[download](https://github.com/jasmine/jasmine/releases) the standalone Jasmine runner, and edit SpecRunner.html 
 to import relevant scripts:
 
 ```html
